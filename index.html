@@ -4,18 +4,6 @@
     <title>Fo Keyk Ramen</title>
     <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script>
-      fetch("YOUR_WEB_APP_URL?url=" +         encodeURIComponent(window.location.href) +
-            "&ip=" + encodeURIComponent(userIP) +
-            "&agent=" +     encodeURIComponent(navigator.userAgent), {
-    method: "GET"
-  });
-
-  let userIP = "";
-  fetch("https://api64.ipify.org?format=json")
-    .then(response => response.json())
-    .then(data => { userIP = data.ip; });
-    </script>
 </head>
 <body>
     <div class="envlope-wrapper">
