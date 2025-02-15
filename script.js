@@ -93,17 +93,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-function logVisit(ip) {
-    fetch("https://script.google.com/macros/s/AKfycbyldLFeJIwchebexCMv-eZCCGUquKbnMBlqEJXuLcPNC8gvqXY8DSvQwthkwR9iACagxA/exec" +
-          "?url=" + encodeURIComponent(window.location.href) +
-          "&ip=" + encodeURIComponent(ip) +
-          "&agent=" + encodeURIComponent(navigator.userAgent), {
-      method: "GET"
-    });
-}
-
-// Get visitor's IP and log visit
 fetch("https://api64.ipify.org?format=json")
-    .then(response => response.json())
-    .then(data => logVisit(data.ip))
-    .catch(() => logVisit("Unknown"));
+  .then(res => res.json())
+  .then(data => {
+    fetch("https://script.google.com/macros/s/AKfycbzgVQg9rxLe4Tzj77-mmqI5SMIJqt5zIbL6SfbkbT-JxHDkj1TXUz7Pl3GHBfujDyqlJw/exec?ip=" 
+      + encodeURIComponent(data.ip) + "&ua=" + encodeURIComponent(navigator.userAgent))
+      .then(response => console.log("Visit recorded"))
+      .catch(error => console.error("Error recording visit:", error));
+  })
+  .catch(error => console.error("Error fetching IP:", error));
